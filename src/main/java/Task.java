@@ -2,12 +2,12 @@ public class Task {
     protected String description;
     protected boolean isDone;
     protected int id;
-    protected static int num = 0;
+    private static int numOfTasks = 0;
 
     public Task(String description) {
         this.description = description;
-        num++;
-        id = num;
+        numOfTasks++;
+        id = numOfTasks;
         this.isDone = false;
     }
 
@@ -19,8 +19,8 @@ public class Task {
         return id;
     }
 
-    public static int getNum() {
-        return num;
+    public static int getNumOfTasks() {
+        return numOfTasks;
     }
 
     public void markAsDone() {
@@ -29,5 +29,9 @@ public class Task {
 
     public String getStatusIcon() {
         return (isDone ? "[\u2713] " : "[\u2718] "); //return tick or X symbols
+    }
+
+    public String toString() {
+        return this.getStatusIcon() + this.getDescription();
     }
 }
