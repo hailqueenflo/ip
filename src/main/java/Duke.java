@@ -55,7 +55,7 @@ public class Duke {
 
     private static void printList(TaskType taskType) {
         printHorLine();
-        System.out.println("\n      Here are the tasks in your list:");
+        System.out.println("      Here are the tasks in your list:");
         taskType.listTasks();
         printHorLine();
     }
@@ -65,7 +65,7 @@ public class Duke {
         Task task = taskType.markAsDone(id);
         printHorLine();
         System.out.println("     Nice! I've marked this task as done: \n" + "       " +
-                task.toString() + "\n");
+                task.toString());
         printHorLine();
     }
 
