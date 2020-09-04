@@ -35,7 +35,7 @@ public class TaskType {
 
     public void listTasks() {
         for (int i = 0; i < tasksCount; i++) {
-            System.out.println("     " + (i + 1) + "." + "     " + tasksList[i].toString());
+            System.out.println("     " + (i + 1) + "." + " " + tasksList[i].toString());
         }
     }
 }
