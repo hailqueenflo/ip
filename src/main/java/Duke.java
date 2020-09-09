@@ -31,7 +31,8 @@ public class Duke {
 
     private static void execute(String line, TaskType taskType) {
 
-        int spacePosition = line.indexOf(" ");
+        int spacePosition = line.indexOf(" ");  // position of first space
+        // identify command using position of space
         String command = spacePosition > 0 ? line.substring(0, spacePosition) : line;
         String num;
 
@@ -49,6 +50,9 @@ public class Duke {
         case "deadline":
         case "event":
             addTask(taskType, command, line);
+            break;
+        default:
+            printInvalidMeaning();
             break;
         }
     }
@@ -69,12 +73,33 @@ public class Duke {
         printHorLine();
     }
 
+    private static void printCannotBeEmpty(String command) {
+        printHorLine();
+        System.out.println("     ☹ OOPS!!! The description of a " + command + " cannot be empty.");
+        printHorLine();
+    }
+
+    private static void printInvalidMeaning() {
+        printHorLine();
+        System.out.println("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        printHorLine();
+    }
+
     private static void addTask(TaskType taskType, String command, String line) {
-        int descriptionPosition = line.indexOf(" ") + 1;
+        int spacePosition = line.indexOf(" ");
         int byPosition;
         int atPosition;
+        String description;
 
-        String description = line.substring(descriptionPosition);
+        // check for blank description
+        try {
+            description = line.substring(spacePosition).strip();
+        } catch (StringIndexOutOfBoundsException e) {
+            printCannotBeEmpty(command);
+            return;
+        }
+
+//        String description = line.substring(descriptionPosition);
         String by, at;
         Task task = null;
 
@@ -94,6 +119,9 @@ public class Duke {
             description = description.substring(0, atPosition - 1);
             task = taskType.addEvent(description, at);
             break;
+        default:
+            printInvalidMeaning();
+            return;
         }
         printHorLine();
 
