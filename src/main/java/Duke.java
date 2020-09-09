@@ -99,7 +99,6 @@ public class Duke {
             return;
         }
 
-//        String description = line.substring(descriptionPosition);
         String by, at;
         Task task = null;
 
@@ -133,4 +132,3 @@ public class Duke {
         }
     }
 }
-
