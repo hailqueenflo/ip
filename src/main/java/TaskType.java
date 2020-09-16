@@ -47,4 +47,8 @@ public class TaskType {
             System.out.println("     " + (i + 1) + "." + "     " + tasks.get(i).toString());
         }
     }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
 }

@@ -10,6 +10,10 @@ public class Duke {
         String goodbye = horLine +
                 "\n     Bye. Hope to see you again soon!\n" + horLine;
 
+        TaskType list = new TaskType();
+        FileAccess fileAccess = new FileAccess(list);
+        fileAccess.writeToFile();
+
         // print hello message
         System.out.println(hello);
 
