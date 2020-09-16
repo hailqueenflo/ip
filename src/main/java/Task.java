@@ -15,6 +15,14 @@ public class Task {
         return description;
     }
 
+    public String getType() {
+        return "type";
+    }
+
+    public String getTime() {
+        return "by/at";
+    }
+
     public int getId() {
         return id;
     }
