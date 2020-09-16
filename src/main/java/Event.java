@@ -11,10 +11,9 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.at + ")";
     }
-    public String getType() {
-        return "E";
-    }
-    public String getTime() {
-        return at;
+
+    @Override
+    public String writeToFile() {
+        return "E|" + isDone + "|" + this.description + "|" + this.at + "\n";
     }
 }

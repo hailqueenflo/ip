@@ -1,13 +1,9 @@
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected int id;
-    private static int numOfTasks = 0;
 
     public Task(String description) {
         this.description = description;
-        numOfTasks++;
-        id = numOfTasks;
         this.isDone = false;
     }
 
@@ -15,30 +11,19 @@ public class Task {
         return description;
     }
 
-    public String getType() {
-        return "type";
-    }
-
-    public String getTime() {
-        return "by/at";
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public static int getNumOfTasks() {
-        return numOfTasks;
-    }
-
-    public void markAsDone() {
-        this.isDone = true;
+    public void markAsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     public String getStatusIcon() {
         return (isDone ? "[\u2713] " : "[\u2718] "); //return tick or X symbols
     }
 
+    public String writeToFile() {
+        return "T|" + isDone + "|" + this.description + "\n";
+    }
+
+    @Override
     public String toString() {
         return this.getStatusIcon() + this.getDescription();
     }
