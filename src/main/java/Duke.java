@@ -51,6 +51,10 @@ public class Duke {
         case "event":
             addTask(taskType, command, line);
             break;
+        case "delete":
+            num = line.substring(spacePosition + 1);
+            deleteTask(taskType, num);
+            break;
         default:
             printInvalidMeaning();
             break;
@@ -100,7 +104,7 @@ public class Duke {
         }
 
         String by, at;
-        Task task = null;
+        Task task;
 
         switch (command) {
         case "todo":
@@ -130,5 +134,15 @@ public class Duke {
                     TaskType.getTasksCount() + " tasks in the list.");
             printHorLine();
         }
+    }
+
+    private static void deleteTask(TaskType taskType, String num) {
+        int id = Integer.parseInt(num);
+        Task task = taskType.deleteTask(id);
+        printHorLine();
+        System.out.println("     Noted. I've removed this task: \n" + "       " +
+                task.toString() + "\n     Now you have " +
+                TaskType.getTasksCount() + " tasks in the list.");
+        printHorLine();
     }
 }
