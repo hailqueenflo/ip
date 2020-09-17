@@ -32,7 +32,7 @@ public class Duke {
         }
     }
 
-    // retrieve from the file
+    // retrieve data from the file
     public static void retrieveFromFile(String FILE_PATH) {
         try {
             File file = new File(FILE_PATH);
@@ -40,6 +40,7 @@ public class Duke {
             Task task;
             while (s.hasNext()) {
                 String[] parseTask = s.nextLine().split("\\|");
+                // detect what type of task it is
                 switch (parseTask[0]) {
                 case "T":
                     task = new Todo(parseTask[2]);
@@ -97,9 +98,9 @@ public class Duke {
         printHorLine();
     }
 
-    public static void printCannotBeEmpty(String[] command) {
+    public static void printCannotBeEmpty(String[] userInput) {
         printHorLine();
-        System.out.println("     ☹ OOPS!!! The description of a " + Arrays.toString(command) + " cannot be empty.");
+        System.out.println("     ☹ OOPS!!! The timing or description of " + Arrays.toString(userInput) + " cannot be empty.");
         printHorLine();
     }
 
