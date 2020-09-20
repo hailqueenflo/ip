@@ -16,9 +16,11 @@ public class Duke {
     public static final String BYE = "bye";
     public static final String LIST = "list";
     public static final String FILE_PATH = "duke.txt";
+    public static final String PARSE_TODO = "T";
+    public static final String PARSE_DEADLINE = "D";
+    public static final String PARSE_EVENT = "E";
     public static ArrayList<Task> tasks = new ArrayList<>();
 
-    // write to the file
     public static void writeToFile(String FILE_PATH) {
         try {
             File f = new File(FILE_PATH);
@@ -32,7 +34,6 @@ public class Duke {
         }
     }
 
-    // retrieve data from the file
     public static void retrieveFromFile(String FILE_PATH) {
         try {
             File file = new File(FILE_PATH);
@@ -40,26 +41,33 @@ public class Duke {
             Task task;
             while (s.hasNext()) {
                 String[] parseTask = s.nextLine().split("\\|");
+                String taskType = parseTask[0];
+                String taskIsDone = parseTask[1];
+                String taskDescription = parseTask[2];
                 // detect what type of task it is
-                switch (parseTask[0]) {
-                case "T":
-                    task = new Todo(parseTask[2]);
+                switch (taskType) {
+                case PARSE_TODO:
+                    task = new Todo(taskDescription);
                     break;
-                case "D":
-                    task = new Deadline(parseTask[2], parseTask[3]);
+                case PARSE_DEADLINE:
+                    String taskBy = parseTask[3];
+                    task = new Deadline(taskDescription, taskBy);
                     break;
-                case "E":
-                    task = new Event(parseTask[2], parseTask[3]);
+                case PARSE_EVENT:
+                    String taskAt = parseTask[3];
+                    task = new Event(taskDescription, taskAt);
+                    break;
                 default:
-                    task = new Task(parseTask[2]);
+                    task = new Task(taskDescription);
+                    break;
                 }
-                if(parseTask[1].equals("true")) {
+                if(taskIsDone.equals("true")) {
                     task.markAsDone(true);
                 }
                 tasks.add(task);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("This file is not found!");
+            System.out.println("This file is not found, creating a new file now!");
         }
     }
 
@@ -67,24 +75,25 @@ public class Duke {
         System.out.println("    ____________________________________________________________");
     }
 
+    // method to print
+    public static void printMessage(String content) {
+        printHorLine();
+        System.out.println(content);
+        printHorLine();
+    }
+
     public static void printHelloMessage() {
-        printHorLine();
-        System.out.println("     Hello! I'm Duke\n" + "     What can I do for you?");
-        printHorLine();
+        printMessage("     Hello! I'm Duke\n" + "     What can I do for you?");
     }
 
     public static void printByeMessage() {
-        printHorLine();
-        System.out.println("     Bye. Hope to see you again soon!");
-        printHorLine();
+        printMessage("     Bye. Hope to see you again soon!");
     }
 
     public static void printTaskAddition(Task task, int index) {
-        printHorLine();
-        System.out.println("     Got it. I've added this task: \n" + "       " +
+        printMessage("     Got it. I've added this task: \n" + "       " +
                 task.toString() + "\n     Now you have " +
                 index + " tasks in the list.");
-        printHorLine();
     }
 
     public static void printList(ArrayList<Task> tasks) {
@@ -99,23 +108,17 @@ public class Duke {
     }
 
     public static void printCannotBeEmpty(String[] userInput) {
-        printHorLine();
-        System.out.println("     ☹ OOPS!!! The timing or description of " + Arrays.toString(userInput) + " cannot be empty.");
-        printHorLine();
+        printMessage("     ☹ OOPS!!! The timing or description of " + Arrays.toString(userInput) + " cannot be empty.");
     }
 
     public static void printInvalidMeaning() {
-        printHorLine();
-        System.out.println("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        printMessage("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
-    // mark task as done
     public static void markAsDone(Task task) {
-        printHorLine();
         task.markAsDone(true);
-        System.out.println("     Nice! I've marked this task as done: \n" + "       " +
+        printMessage("     Nice! I've marked this task as done: \n" + "       " +
                 task.toString());
-        printHorLine();
     }
 
     public static Task createTypes (String input) {
@@ -160,7 +163,7 @@ public class Duke {
         System.out.println("     Noted. I've removed this task: \n" + "       " +
                 tasks.get(index).toString());
         tasks.remove(tasks.get(index));
-        System.out.println("\n     Now you have " +
+        System.out.println("     Now you have " +
                 tasks.size() + " tasks in the list.");
         printHorLine();
     }
@@ -183,9 +186,7 @@ public class Duke {
                     markAsDone(tasks.get(indexOfTask));
                     writeToFile(FILE_PATH);
                 } catch (NumberFormatException e) {
-                    printHorLine();
-                    System.out.println("     ☹ OOPS!!! Please input the number of the task you've completed.");
-                    printHorLine();
+                    printMessage("     ☹ OOPS!!! Please input the number of the task you've completed.");
                 }
             } else if (userInput.startsWith(DELETE)) {
                 try {
@@ -197,9 +198,7 @@ public class Duke {
                     deleteTask(tasks, indexOfTask);
                     writeToFile(FILE_PATH);
                 } catch (DukeException e) {
-                    printHorLine();
-                    System.out.println("     ☹ OOPS!!! This task does not exist.");
-                    printHorLine();
+                    printMessage("     ☹ OOPS!!! This task does not exist.");
                 }
             } else {
                 Task newTask = createTypes(userInput);
