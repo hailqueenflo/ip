@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Ui {
 
-    public static TaskList tasks = new TaskList();
     public static int tasksCounter = 0;
     public static final String TODO = "todo";
     public static final String DEADLINE = "deadline";
@@ -21,7 +20,7 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    // method to print
+    // standard method to print
     public static void printMessage(String content) {
         printHorLine();
         System.out.println(content);
@@ -37,9 +36,15 @@ public class Ui {
     }
 
     public static void printTaskAddition(Task task) {
-        printMessage("     Got it. I've added this task: \n" + "       " +
-                task + "\n     Now you have " +
-                tasksCounter + " tasks in the list.");
+        if(tasksCounter == 1) {
+            printMessage("     Got it. I've added this task: \n" + "       " +
+                    task + "\n     Now you have " +
+                    tasksCounter + " task in the list.");
+        } else {
+            printMessage("     Got it. I've added this task: \n" + "       " +
+                    task + "\n     Now you have " +
+                    tasksCounter + " tasks in the list.");
+        }
     }
 
     public static void printExceptionMessage(String userInput) {
@@ -58,11 +63,21 @@ public class Ui {
             }
             printMessage("     ☹ OOPS!!! The timing or description of a " + invalidInputType + " cannot be empty.");
         } else if(userInput.contains(DONE)) {
-            printMessage("     ☹ OOPS!!! This task cannot be marked as done as it does not exist.\n" +
-                    "     You have " + tasksCounter + " tasks in the list.");
+            if(tasksCounter == 1) {
+                printMessage("     ☹ OOPS!!! This task cannot be marked as done as it does not exist.\n" +
+                        "     You have " + tasksCounter + " task in the list.");
+            } else {
+                printMessage("     ☹ OOPS!!! This task cannot be marked as done as it does not exist.\n" +
+                        "     You have " + tasksCounter + " tasks in the list.");
+            }
         } else if(userInput.contains(DELETE)) {
-            printMessage("     ☹ OOPS!!! This task cannot be deleted as it does not exist.\n" +
-                    "     You have " + tasksCounter + " tasks in the list.");
+            if(tasksCounter == 1) {
+                printMessage("     ☹ OOPS!!! This task cannot be deleted as it does not exist.\n" +
+                        "     You have " + tasksCounter + " task in the list.");
+            } else {
+                printMessage("     ☹ OOPS!!! This task cannot be deleted as it does not exist.\n" +
+                        "     You have " + tasksCounter + " tasks in the list.");
+            }
         } else {
             printMessage("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -77,20 +92,16 @@ public class Ui {
             String command = parser.getCommand(userInput);
             switch(command) {
             case TODO:
-                tasksCounter++;
                 tasks.addTodo(userInput);
                 break;
             case DEADLINE:
-                tasksCounter++;
                 tasks.addDeadline(userInput);
                 break;
             case EVENT:
-                tasksCounter++;
                 tasks.addEvent(userInput);
                 break;
             case DELETE:
                 tasks.deleteItem(userInput, tasksCounter);
-                tasksCounter--;
                 break;
             case DONE:
                 tasks.markAsDone(userInput, tasksCounter);

@@ -31,6 +31,7 @@ public class TaskList {
         String todoDescription = input.substring(taskTypeLength + 1);
         Task task = new Todo(todoDescription);
         tasksList.add(task);
+        Ui.tasksCounter++;
         Ui.printTaskAddition(task);
     }
 
@@ -42,6 +43,7 @@ public class TaskList {
         String deadlineBy = input.substring(indexOfBy + byLength);
         Task task = new Deadline(deadlineDescription, deadlineBy);
         tasksList.add(task);
+        Ui.tasksCounter++;
         Ui.printTaskAddition(task);
     }
 
@@ -53,6 +55,7 @@ public class TaskList {
         String eventAt = input.substring(indexOfAt + atLength);
         Task task = new Event(eventDescription, eventAt);
         tasksList.add(task);
+        Ui.tasksCounter++;
         Ui.printTaskAddition(task);
     }
 
@@ -64,10 +67,14 @@ public class TaskList {
         } else {
             Task task = tasksList.remove(itemToDelete - 1);
             tasksCount--;
-            Ui.printHorLine();
-            System.out.println("     Noted. I've removed this task: \n" + "     " + task +
-                    "\n     Now you have " + tasksCount + " tasks in the list.");
-            Ui.printHorLine();
+            Ui.tasksCounter--;
+            if (tasksCount == 1) {
+                Ui.printMessage("     Noted. I've removed this task: \n" + "     " + task +
+                        "\n     Now you have " + tasksCount + " task in the list.");
+            } else {
+                Ui.printMessage("     Noted. I've removed this task: \n" + "     " + task +
+                        "\n     Now you have " + tasksCount + " tasks in the list.");
+            }
         }
     }
 
