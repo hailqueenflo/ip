@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -15,9 +17,9 @@ public class Task {
         this.isDone = isDone;
     }
 
-//    public String getBooleanStatus() {
-//        return (isDone ? "1" : "0");
-//    }
+    public void taskDone() {
+        this.isDone = true;
+    }
 
     public String getStatusIcon() {
         return (isDone ? "[\u2713] " : "[\u2718] "); //return tick or X symbols
@@ -27,8 +29,8 @@ public class Task {
         return "write to file";
     }
 
-    @Override
     public String toString() {
         return this.getStatusIcon() + this.getDescription();
     }
+
 }
