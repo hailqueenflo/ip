@@ -10,6 +10,7 @@ public class Ui {
     public static final String DONE = "done";
     public static final String BYE = "bye";
     public static final String LIST = "list";
+    public static final String FIND = "find";
     public Parser parser;
 
     public void getCount(int counter) {
@@ -108,6 +109,9 @@ public class Ui {
                 break;
             case LIST:
                 tasks.printTaskList();
+                break;
+            case FIND:
+                tasks.findTasks(userInput);
                 break;
             case BYE:
                 return;
