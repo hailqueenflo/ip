@@ -164,9 +164,10 @@ Expected outcome:
 
 ## FAQ
 __Q__: How do I transfer my data to another Computer?
+
 __A__: A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Duke home folder.
 
-##Command summary
+## Command summary
 
 |  __Action__  |                            __Format, Examples__                            |
 |------------- | -------------------------------------------------------------------------- |
