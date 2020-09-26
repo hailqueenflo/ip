@@ -79,7 +79,7 @@ Example of usage:
 - `event class /at: 2020-12-12`
 
 | `deadline` and `event` can return `DATE_TIME` as `LocalDate` if `DATE_TIME` is in the format `yyyy-mm-dd`. |
-| ---------------------------------------------------------------------------------------------------------- |
+|:----------------------------------------------------------------------------------------------------------:|
 
 ### `delete` - Deletes a task
 Deletes a task from the task list.
