@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TaskList {
 
@@ -88,6 +89,27 @@ public class TaskList {
             Ui.printHorLine();
             System.out.println("     Nice! I've marked this task as done: ");
             System.out.println("       " + tasksList.get(itemDone - 1));
+            Ui.printHorLine();
+        }
+    }
+
+    public static void findTasks(String userInput) {
+        int commandLength = 4;
+        int numberOfTasksFound = 0;
+        String searchItem = userInput.substring(commandLength + 1);
+        ArrayList<Task> tasksFound = (ArrayList<Task>) tasksList.stream()
+                .filter((tasks) -> tasks.getDescription().contains(searchItem))
+                .collect(Collectors.toList());
+        Ui.printHorLine();
+        System.out.println("     Here are the matching tasks in your list:");
+        for(Task task : tasksFound) {
+            numberOfTasksFound++;
+            System.out.println("     " + numberOfTasksFound + ". " + task);
+        }
+        Ui.printHorLine();
+        if(numberOfTasksFound == 0) {
+            Ui.printHorLine();
+            System.out.println("     There are no matching tasks in your list.");
             Ui.printHorLine();
         }
     }
