@@ -48,7 +48,7 @@ Formats date.
 
 ## Usage
 
-| ![Note about the command format:](/docs/Image/info.png)                                                                                                 |
+| __Note about the command format:__                                                                                             |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Words in `UPPER_CASE` are the parameters to be supplied by the user.  e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo read book` |
 
@@ -79,7 +79,7 @@ Example of usage:
 - `event class /at: 2020-12-12`
 
 | `deadline` and `event` can return `DATE_TIME` as `LocalDate` if `DATE_TIME` is in the format `yyyy-mm-dd`. |
-|----------------------------------------------------------------------------------------------------------|
+| ---------------------------------------------------------------------------------------------------------- |
 
 ### `delete` - Deletes a task
 Deletes a task from the task list.
