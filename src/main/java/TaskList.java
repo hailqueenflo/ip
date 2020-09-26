@@ -126,6 +126,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Searches and collects tasks with user input search term.
+     * @param userInput Search term requested by user.
+     */
     public static void findTasks(String userInput) {
         int commandLength = 4;
         int numberOfTasksFound = 0;
