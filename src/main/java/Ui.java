@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Class that deals with user interface.
+ * Contains messages to be printed.
+ */
 public class Ui {
 
     public static int tasksCounter = 0;
@@ -13,6 +17,10 @@ public class Ui {
     public static final String FIND = "find";
     public Parser parser;
 
+    /**
+     * Finds number of tasks in list.
+     * @param counter Total number of tasks in taskList.
+     */
     public void getCount(int counter) {
         this.tasksCounter = counter;
     }
@@ -21,21 +29,34 @@ public class Ui {
         System.out.println("    ____________________________________________________________");
     }
 
-    // standard method to print
+    /**
+     * Standard method to print, with horizontal lines wrapping message.
+     * @param content Message to be printed.
+     */
     public static void printMessage(String content) {
         printHorLine();
         System.out.println(content);
         printHorLine();
     }
 
+    /**
+     * Greets user when Duke starts.
+     */
     public static void printHelloMessage() {
         printMessage("     Hello! I'm Duke\n" + "     What can I do for you?");
     }
 
+    /**
+     * Says bye to user when exit is requested.
+     */
     public static void printByeMessage() {
         printMessage("     Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Prints confirmation that task has been added.
+     * @param task The taskList that contains all commands for tasks.
+     */
     public static void printTaskAddition(Task task) {
         if(tasksCounter == 1) {
             printMessage("     Got it. I've added this task: \n" + "       " +
@@ -48,6 +69,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints error message when description is empty,
+     * or task to be marked as done/deleted does not exist.
+     * @param userInput User input command line.
+     */
     public static void printExceptionMessage(String userInput) {
         if(userInput.equals(TODO) || userInput.equals(EVENT) || userInput.equals(DEADLINE)) {
             String invalidInputType = null;
@@ -84,6 +110,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Handles user input command line.
+     * @param tasks The taskList that contains all commands for tasks.
+     * @throws DukeException Exception thrown when user input command is invalid.
+     */
     public void commands(TaskList tasks) throws DukeException {
         Scanner in = new Scanner(System.in);
         String userInput;

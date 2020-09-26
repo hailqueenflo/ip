@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Stores all task information into an array list.
+ */
+
 public class TaskList {
 
     public static ArrayList<Task> tasksList;
@@ -13,10 +17,17 @@ public class TaskList {
         tasksList.add(task);
     }
 
+    /**
+     * Gets task list.
+     * @return The task list.
+     */
     public ArrayList<Task> getTasksList() {
         return tasksList;
     }
 
+    /**
+     * Prints task list.
+     */
     public static void printTaskList() {
         int taskIndex = 1;
         Ui.printHorLine();
@@ -27,6 +38,10 @@ public class TaskList {
         Ui.printHorLine();
     }
 
+    /**
+     * Adds Todo task to taskList.
+     * @param input User input description of task.
+     */
     public static void addTodo(String input) {
         int taskTypeLength = 4;
         String todoDescription = input.substring(taskTypeLength + 1);
@@ -36,6 +51,10 @@ public class TaskList {
         Ui.printTaskAddition(task);
     }
 
+    /**
+     * Adds Deadline task to taskList.
+     * @param input User input description and deadline of task.
+     */
     public static void addDeadline(String input) {
         int taskTypeLength = 8;
         int indexOfBy = input.indexOf("/");
@@ -48,6 +67,10 @@ public class TaskList {
         Ui.printTaskAddition(task);
     }
 
+    /**
+     * Adds Event task to taskList.
+     * @param input User input description and time of task.
+     */
     public static void addEvent(String input) {
         int taskTypeLength = 5;
         int indexOfAt = input.indexOf("/");
@@ -60,6 +83,11 @@ public class TaskList {
         Ui.printTaskAddition(task);
     }
 
+    /**
+     * Deletes task from taskList.
+     * @param input User input of index of task to be deleted.
+     * @param tasksCount Number of tasks in list.
+     */
     public static void deleteItem(String input, int tasksCount) {
         int commandLength = 6;
         int itemToDelete = Integer.parseInt(input.substring(commandLength + 1));
@@ -79,6 +107,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks task as done.
+     * @param input User input of index of task to be marked as done.
+     * @param tasksCount Number of tasks in list.
+     */
     public static void markAsDone(String input, int tasksCount) {
         int commandLength = 4;
         int itemDone = Integer.parseInt(input.substring(commandLength + 1));
