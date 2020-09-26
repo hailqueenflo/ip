@@ -48,7 +48,7 @@ Formats date.
 
 ## Usage
 
-| ![__Note about the command format:__](/Image/info.png)                                                                                                 |
+| ![Note about the command format:](/docs/Image/info.png)                                                                                                 |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Words in `UPPER_CASE` are the parameters to be supplied by the user.  e.g. in `todo TASK`, `TASK` is a parameter which can be used as `todo read book` |
 
@@ -92,7 +92,7 @@ Expected outcome:
 
 ```javascript
     ____________________________________________________________
-      Noted. I've removed this task: 
+      Noted. I’ve removed this task: 
       [E][✘] movie (at: Oct 11 2020)
       Now you have 3 tasks in the list.
      ____________________________________________________________
@@ -109,7 +109,7 @@ Expected outcome:
 
 ```javascript
     ____________________________________________________________
-     Nice! I've marked this task as done: 
+     Nice! I’ve marked this task as done:
        [E][✓] lunch (at: 12pm)
     ____________________________________________________________
 ```
@@ -167,8 +167,9 @@ __Q__: How do I transfer my data to another Computer?
 __A__: A: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Duke home folder.
 
 ##Command summary
+
 |  __Action__  |                            __Format, Examples__                            |
-|:------------:|:--------------------------------------------------------------------------:|
+|------------- | -------------------------------------------------------------------------- |
 |   __Todo__   | `todo TASK` e.g., `todo read book`                                        |
 | __Deadline__ | `deadline TASK /by: DATE_TIME` e.g., `deadline assignment /by: 2020-10-11` |
 |   __Event__  | `event TASK /at: DATE_TIME` e.g., `event meeting /at: 2pm`                 |
