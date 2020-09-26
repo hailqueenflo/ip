@@ -7,6 +7,7 @@ public class Parser {
     public static final String EVENT = "event";
     public static final String DELETE = "delete";
     public static final String DONE = "done";
+    public static final String FIND = "find";
     public static final String BYE = "bye";
     public static final String LIST = "list";
     public static final String ERROR = "error";
@@ -18,7 +19,7 @@ public class Parser {
      * @return appropriate command
      * @throws DukeException Throw invalid exceptions.
      */
-    public static String getCommand(String userInput) throws DukeException {
+    public static String getCommand(String userInput) {
         try {
             if(userInput.equals(LIST)) {
                 return LIST;
@@ -37,6 +38,8 @@ public class Parser {
                 return DELETE;
             } else if (userInput.contains(DONE)) {
                 return DONE;
+            } else if (userInput.contains(FIND)) {
+                return FIND;
             } else {
                 throw new DukeException();
             }
