@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Loads and saves tasks to file.
+ */
+
 public class Storage {
 
     public static ArrayList<Task> tasksArrayList;
@@ -12,11 +16,21 @@ public class Storage {
     private static String filePath;
     public static int fileTasksCounter = 0;
 
+    /**
+     * Constructs storage.
+     * Initialises file and file path.
+     * @param filePath Destination of file.
+     * @throws IOException Error in accessing file.
+     */
     public Storage(String filePath) throws IOException {
         f = new File(filePath);
         this.filePath = filePath;
     }
 
+    /**
+     * Saves tasks to file.
+     * @param tasks The taskList that contains list of tasks.
+     */
     public static void writeToFile(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -30,6 +44,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads from file.
+     * @param tasks The taskList that contains list of tasks.
+     */
     public static int retrieveFromFile(TaskList tasks) {
         try {
             Scanner s = new Scanner(f);

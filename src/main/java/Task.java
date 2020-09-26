@@ -1,6 +1,16 @@
+/**
+ * A class for task objects in Duke.
+ * It is the parent class of todo, deadline and event classes.
+ */
+
 public class Task {
     protected String description;
     protected boolean isDone;
+
+    /**
+     * Creates new Task given the description.
+     * @param description Description of task.
+     */
 
     public Task(String description) {
         this.description = description;

@@ -11,6 +11,13 @@ public class Parser {
     public static final String LIST = "list";
     public static final String ERROR = "error";
 
+    /**
+     * Makes sense of user input and figures out command.
+     * Incorrect input is dealt with.
+     * @param userInput User input command line.
+     * @return appropriate command
+     * @throws DukeException Throw invalid exceptions.
+     */
     public static String getCommand(String userInput) throws DukeException {
         try {
             if(userInput.equals(LIST)) {
@@ -39,6 +46,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Makes sense of date for Deadline and Event tasks.
+     * @param dateAndTime User input date/time.
+     * @return Formatted date.
+     */
     public static String getFormattedDate(String dateAndTime) {
         LocalDate date;
         String formattedDate;
